@@ -24,6 +24,16 @@ public class ConvertUtil {
 	private static SimpleDateFormat df = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss",Locale.US);
 
+	static {
+		names = new ArrayList<String>();
+		names.add("authors");
+		names.add("pubdate");
+		names.add("publisher");
+		names.add("price");
+		names.add("pages");
+		names.add("binding");
+	}
+
 	/**
 	 * 获取用户的评论列表
 	 */
@@ -54,7 +64,6 @@ public class ConvertUtil {
 			book.setUrl(entry.getId());
 			book.setImgUrl(entry.getLink("image", null).getHref());
 			book.setRating(entry.getRating().getAverage() / 2);
-			// book.setType(cat);
 			books.add(book);
 		}
 		return books;
@@ -162,11 +171,11 @@ public class ConvertUtil {
 		for (String name : names) {
 			if (map.get(name) != null) {
 				if ("price".equals(name)) {
-					description += "/" + map.get(name) + "元";
+					description += "\n" + map.get(name) + "元";
 				} else if ("pages".equals(name)) {
-					description += "/" + map.get(name) + "页";
+					description += "\n" + map.get(name) + "页";
 				} else {
-					description += "/" + map.get(name);
+					description += "\n" + map.get(name);
 				}
 			}
 		}
@@ -205,11 +214,11 @@ public class ConvertUtil {
 		for (String name : names) {
 			if (map.get(name) != null) {
 				if ("price".equals(name)) {
-					description += "/" + map.get(name) + "元";
+					description += "\n" + map.get(name) + "元";
 				} else if ("pages".equals(name)) {
-					description += "/" + map.get(name) + "页";
+					description += "\n" + map.get(name) + "页";
 				} else {
-					description += "/" + map.get(name);
+					description += "\n" + map.get(name);
 				}
 			}
 		}

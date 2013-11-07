@@ -9,12 +9,14 @@ import com.example.doubanyp.util.ConvertUtil;
 import com.example.doubanyp.util.NetUtil;
 import com.google.gdata.data.douban.SubjectFeed;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -27,9 +29,9 @@ import android.widget.RelativeLayout.LayoutParams;
 
 public class DoubanActivity extends BaseActivity {
 	private List<Book> books = new ArrayList<Book>();
-
+	private EditText searchText;
 	private int bookIndex = 1;
-	private int count = 10; // 每次获取数目
+	private int count = 6; // 每次获取数目
 	private boolean isFilling = false; // 判断是否正在获取数据
 	protected BookListAdapter bookListAdapter;
 
@@ -41,16 +43,19 @@ public class DoubanActivity extends BaseActivity {
 		setContentView(R.layout.activity_douban);
 
 		initView();
+
+		initDouban();
 	}
 
 	private void initView() {
-		EditText searchText = (EditText) this.findViewById(R.id.search_text);
+		searchText = (EditText) this.findViewById(R.id.search_text);
 		searchText.setHint(R.string.book_search_hint);
 		ImageButton searchButton = (ImageButton) this
 				.findViewById(R.id.search_button);
 
 		searchButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
+				hideKeyboard();
 				doSearch();
 			}
 		});
@@ -70,7 +75,7 @@ public class DoubanActivity extends BaseActivity {
 		listView.setOnScrollListener(new OnScrollListener() {
 
 			public void onScroll(AbsListView arg0, int arg1, int arg2, int arg3) {
-
+				
 			}
 
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -83,6 +88,11 @@ public class DoubanActivity extends BaseActivity {
 			}
 		});
 
+	}
+	
+	private void hideKeyboard(){
+		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
+				.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 
 	// 获取更多条目
@@ -105,8 +115,6 @@ public class DoubanActivity extends BaseActivity {
 	}
 
 	private void doSearch() {
-		EditText searchText = (EditText) this.findViewById(R.id.search_text);
-
 		String searchTitle = searchText.getText().toString();
 		if ("".equals(searchTitle.trim())) {
 			return;
@@ -122,8 +130,6 @@ public class DoubanActivity extends BaseActivity {
 
 			@Override
 			protected SubjectFeed doInBackground(String... args) {
-				EditText searchText = (EditText) DoubanActivity.this
-						.findViewById(R.id.search_text);
 
 				String title = searchText.getText().toString();
 				SubjectFeed feed = null;
@@ -162,7 +168,6 @@ public class DoubanActivity extends BaseActivity {
 				super.onPreExecute();
 				isFilling = true;
 				showProgressBar();
-				initDouban();
 			}
 
 		}.execute("");

@@ -2,11 +2,6 @@ package com.example.doubanyp.entity;
 
 import java.util.List;
 
-import com.example.doubanyp.R;
-import com.example.doubanyp.util.NetUtil;
-import com.example.doubanyp.util.ViewCache;
-import com.example.doubanyp.util.AsyncImageLoader.ImageCallback;
-
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -17,6 +12,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.example.doubanyp.R;
+import com.example.doubanyp.util.AsyncImageLoader.ImageCallback;
+import com.example.doubanyp.util.NetUtil;
+import com.example.doubanyp.util.ViewCache;
 
 public class BookListAdapter extends BaseAdapter {
 	private List<Book> books;

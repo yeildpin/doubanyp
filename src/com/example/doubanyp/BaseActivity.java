@@ -21,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class BaseActivity extends Activity {
+	protected static final int DOAUTH = 1;
 
 	protected ProgressDialog pd;
 	protected SharedPreferences sharedata;
@@ -32,33 +33,44 @@ public class BaseActivity extends Activity {
 		sharedata = getSharedPreferences(ConfigData.TAG, 0);
 	}
 
-	protected void initDouban(){
+	protected void initDouban() {
 		String accessToken = sharedata.getString(ConfigData.ACCESSTOKEN, null);
 		String tokenSecret = sharedata.getString(ConfigData.TOKENSECRET, null);
-		if(accessToken != null && tokenSecret != null){
+		if (accessToken != null && tokenSecret != null) {
 			NetUtil.doubanService.setAccessToken(accessToken, tokenSecret);
-		}
-		else{
-			NetUtil.doubanService = new DoubanService("DoubanYP", NetUtil.apiKey, NetUtil.secret);
+			NetUtil.isAuthed = true;
+		} else {
+			NetUtil.doubanService = new DoubanService("DoubanYP",
+					NetUtil.apiKey, NetUtil.secret);
+			NetUtil.isAuthed = false;
 		}
 	}
-	
-	protected void doAuth(){
-		new AlertDialog.Builder(BaseActivity.this)
-		.setTitle("提示")
-		.setMessage("用户未登录或授权已过期，请先登录！")
-		.setPositiveButton("登录", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialoginterface, int i) {
-				Intent intent = new Intent(getApplicationContext(), AuthActivity.class);
-				startActivityForResult(intent, 0);
-				finish();
-			}
-		}).show();
+
+	protected void doAuth() {
+		new AlertDialog.Builder(BaseActivity.this).setTitle("提示")
+				.setMessage("用户未登录或授权已过期，请先登录！")
+				.setPositiveButton("登录", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialoginterface, int i) {
+						Intent intent = new Intent(BaseActivity.this,
+								AuthActivity.class);
+						startActivityForResult(intent, DOAUTH);
+					}
+				}).show();
 	}
 
 	@Override
-	protected void onResume() {
-		super.onResume();
+	protected void onRestart() {
+		// TODO Auto-generated method stub
+		super.onRestart();
+		if (sharedata == null)
+			sharedata = getSharedPreferences(ConfigData.TAG, 0);
+//		initDouban();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		closeDialog();
 	}
 
 	// 退出
@@ -81,11 +93,16 @@ public class BaseActivity extends Activity {
 
 	// 加载对话框
 	public void showDialog() {
-		pd = ProgressDialog.show(BaseActivity.this, "信息", "加载数据中...");
+		if (pd == null)
+			pd = new ProgressDialog(BaseActivity.this);
+		pd.setTitle("信息");
+		pd.setMessage("加载数据中...");
+		pd.show();
 	}
-	
-	public void closeDialog(){
-		pd.dismiss();
+
+	public void closeDialog() {
+		if (pd != null)
+			pd.dismiss();
 	}
 
 	public void showProgressBar() {

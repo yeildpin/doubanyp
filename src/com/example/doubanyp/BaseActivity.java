@@ -21,7 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class BaseActivity extends Activity {
-	protected static final int DOAUTH = 1;
+	protected int DOAUTH = 5;
 
 	protected ProgressDialog pd;
 	protected SharedPreferences sharedata;

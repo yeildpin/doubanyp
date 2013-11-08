@@ -3,5 +3,7 @@
     <color name="transparent">#00000000</color>
     <color name="black">#ff000000</color>
     <color name="blue">#ff0000ff</color>
+    <color name="red">#ffe13633</color>
+    <color name="green">#ff4cb749</color>
     <color name="titletextcolor">#ffffffff</color>
 </resources>

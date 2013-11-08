@@ -1,5 +1,7 @@
 package com.example.doubanyp;
 
+import java.io.IOException;
+
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -18,6 +20,7 @@ import com.example.doubanyp.util.AsyncImageLoader.ImageCallback;
 import com.example.doubanyp.util.ConvertUtil;
 import com.example.doubanyp.util.NetUtil;
 import com.google.gdata.data.douban.SubjectEntry;
+import com.google.gdata.util.ServiceException;
 
 public class BookViewActivity extends BaseActivity {
 	private TextView txtTitle;
@@ -70,7 +73,6 @@ public class BookViewActivity extends BaseActivity {
 							intent = new Intent(BookViewActivity.this,
 									ReviewEditActivity.class);
 							intent.putExtra("book", book);
-//							intent.putExtra("id", v.getId());
 							startActivity(intent);
 						} else {
 							doAuth();
@@ -80,7 +82,7 @@ public class BookViewActivity extends BaseActivity {
 
 		// 回退按钮
 		ImageButton backButton = (ImageButton) findViewById(R.id.back_button);
-		
+
 		backButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
@@ -129,7 +131,10 @@ public class BookViewActivity extends BaseActivity {
 
 				try {
 					entry = NetUtil.doubanService.getBook(bookId);
-				} catch (Exception e) {
+				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (ServiceException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				return entry;

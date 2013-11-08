@@ -78,16 +78,6 @@
                             android:orientation="horizontal"
                             android:paddingTop="5dip" >
 
-                            <TextView
-                                android:id="@+id/book_status"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingRight="10dip"
-                                android:textColor="#00f"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                android:visibility="gone" />
-
                             <RatingBar
                                 android:id="@+id/ratingbar"
                                 style="?android:attr/ratingBarStyleSmall"

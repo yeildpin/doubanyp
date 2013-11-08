@@ -18,6 +18,7 @@ import com.example.doubanyp.util.NetUtil;
 public class ReviewViewActivity extends BaseActivity {
 
 	private TextView txtReviewTitle;
+	private TextView txtReviewUpdated;
 	private TextView txtReviewContent;
 	private TextView txtReviewComment;
 	private ImageView userImageView;
@@ -32,6 +33,7 @@ public class ReviewViewActivity extends BaseActivity {
 		setContentView(R.layout.review_view);
 
 		txtReviewTitle = (TextView) findViewById(R.id.review_title);
+		txtReviewUpdated = (TextView) findViewById(R.id.review_updated);
 		txtReviewContent = (TextView) findViewById(R.id.review_content);
 		txtReviewComment = (TextView) findViewById(R.id.review_comments);
 		userImageView = (ImageView) findViewById(R.id.user_img);
@@ -81,6 +83,7 @@ public class ReviewViewActivity extends BaseActivity {
 				closeDialog();
 				super.onPostExecute(review);
 				txtReviewTitle.setText(review.getTitle());
+				txtReviewUpdated.setText(review.getUpdated());
 				txtReviewContent.setText(Html.fromHtml(review.getContent()));
 				txtReviewComment.setText(Html.fromHtml(review.getComments()));
 				if (review.getAuthorImage() != null) {

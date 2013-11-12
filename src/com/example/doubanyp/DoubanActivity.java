@@ -3,29 +3,32 @@ package com.example.doubanyp;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
+import android.widget.Toast;
+
 import com.example.doubanyp.entity.Book;
 import com.example.doubanyp.entity.BookListAdapter;
 import com.example.doubanyp.util.ConvertUtil;
 import com.example.doubanyp.util.NetUtil;
 import com.google.gdata.data.douban.SubjectFeed;
-
-import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AbsListView;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.AbsListView.OnScrollListener;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.RelativeLayout.LayoutParams;
 
 public class DoubanActivity extends BaseActivity {
 	private List<Book> books = new ArrayList<Book>();
@@ -52,11 +55,16 @@ public class DoubanActivity extends BaseActivity {
 		searchText.setHint(R.string.book_search_hint);
 		ImageButton searchButton = (ImageButton) this
 				.findViewById(R.id.search_button);
-
 		searchButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View view) {
-				hideKeyboard();
-				doSearch();
+				if (checkNetWorkStatus())
+					doSearch();
+				else {
+					Toast toast = Toast.makeText(getApplicationContext(), "程序未联网！",
+							Toast.LENGTH_SHORT);
+					toast.setGravity(Gravity.CENTER, 0, 0);
+					toast.show();
+				}
 			}
 		});
 
@@ -75,7 +83,7 @@ public class DoubanActivity extends BaseActivity {
 		listView.setOnScrollListener(new OnScrollListener() {
 
 			public void onScroll(AbsListView arg0, int arg1, int arg2, int arg3) {
-				
+
 			}
 
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -88,11 +96,6 @@ public class DoubanActivity extends BaseActivity {
 			}
 		});
 
-	}
-	
-	private void hideKeyboard(){
-		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE))
-				.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 
 	// 获取更多条目
@@ -114,6 +117,17 @@ public class DoubanActivity extends BaseActivity {
 		fillData();
 	}
 
+	private boolean checkNetWorkStatus() {
+		boolean netSataus = false;
+
+		ConnectivityManager cwjManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo info = cwjManager.getActiveNetworkInfo();
+		if (info != null) {
+			netSataus = info.isAvailable();
+		}
+		return netSataus;
+	}
+
 	private void doSearch() {
 		String searchTitle = searchText.getText().toString();
 		if ("".equals(searchTitle.trim())) {
@@ -125,8 +139,12 @@ public class DoubanActivity extends BaseActivity {
 		fillData();
 	}
 
+	private AsyncTask<String, Void, SubjectFeed> task;
+
 	private void fillData() {
-		new AsyncTask<String, Void, SubjectFeed>() {
+		if (task != null)
+			task.cancel(true);
+		task = new AsyncTask<String, Void, SubjectFeed>() {
 
 			@Override
 			protected SubjectFeed doInBackground(String... args) {

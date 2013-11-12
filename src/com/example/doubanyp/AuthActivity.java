@@ -66,7 +66,6 @@ public class AuthActivity extends BaseActivity {
 		String url = NetUtil.doubanService
 				.getAuthorizationUrl(NetUtil.callback);
 		requestTokenSecret = NetUtil.doubanService.getRequestTokenSecret();
-		System.out.println(requestTokenSecret);
 		return url;
 	}
 
@@ -76,6 +75,7 @@ public class AuthActivity extends BaseActivity {
 	void initWeb() {
 		loading.setVisibility(View.VISIBLE);
 		browser = (WebView) AuthActivity.this.findViewById(R.id.browser);
+		browser.requestFocus();
 		WebSettings settings = browser.getSettings();
 		settings.setSupportZoom(true);
 		settings.setBuiltInZoomControls(true);
@@ -114,6 +114,7 @@ public class AuthActivity extends BaseActivity {
 			@Override
 			protected Void doInBackground(String... params) {
 				// TODO Auto-generated method stub
+				url = getAuthUrl();
 				browser.loadUrl(url);
 				return null;
 			}
@@ -130,7 +131,6 @@ public class AuthActivity extends BaseActivity {
 				// TODO Auto-generated method stub
 				super.onPreExecute();
 				showDialog();
-				url = getAuthUrl();
 			}
 
 		}.execute("");

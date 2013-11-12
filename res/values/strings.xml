@@ -16,14 +16,8 @@
     <string name="order_rule">热门评论</string>
     <string name="order_rule_new">最新评论</string>
     
-    
 	<string name="menu_delete">删除</string>
 	<string name="menu_edit">编辑</string>
-    
-    
-    <string name="review_test">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</string>
-    
-    
     <string name="todo">封面</string>
 
 </resources>

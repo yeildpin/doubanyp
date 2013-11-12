@@ -24,11 +24,14 @@ public class BaseListActivity extends ListActivity {
 	protected void initDouban() {
 		String accessToken = sharedata.getString(ConfigData.ACCESSTOKEN, null);
 		String tokenSecret = sharedata.getString(ConfigData.TOKENSECRET, null);
-		if (accessToken != null && tokenSecret != null) {
-			NetUtil.doubanService.setAccessToken(accessToken, tokenSecret);
-		} else {
+		if(NetUtil.doubanService == null)
 			NetUtil.doubanService = new DoubanService("DoubanYP",
 					NetUtil.apiKey, NetUtil.secret);
+		if (accessToken != null && tokenSecret != null) {
+			NetUtil.doubanService.setAccessToken(accessToken, tokenSecret);
+			NetUtil.isAuthed = true;
+		} else {
+			NetUtil.isAuthed = false;
 		}
 	}
 	

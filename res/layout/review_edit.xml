@@ -41,8 +41,8 @@
                     android:layout_height="wrap_content"
                     android:background="@android:drawable/editbox_background"
                     android:hint="@string/review_title"
-                    android:minHeight="40dip"
-                    android:text="测试" >
+                    android:minHeight="40dip" >
+
                 </EditText>
 
                 <RatingBar
@@ -52,7 +52,6 @@
                     android:layout_below="@+id/EdtReviewTitle"
                     android:layout_marginLeft="5dip"
                     android:numStars="5"
-                    android:rating="4"
                     android:stepSize="1" />
 
                 <EditText
@@ -63,8 +62,8 @@
                     android:layout_below="@id/ratingbar"
                     android:background="@android:drawable/editbox_background"
                     android:gravity="top"
-                    android:hint="@string/review_content"
-                    android:text="@string/review_test" >
+                    android:hint="@string/review_content" >
+
                 </EditText>
 
                 <LinearLayout

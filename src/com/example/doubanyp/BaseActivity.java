@@ -36,8 +36,9 @@ public class BaseActivity extends Activity {
 	protected void initDouban() {
 		String accessToken = sharedata.getString(ConfigData.ACCESSTOKEN, null);
 		String tokenSecret = sharedata.getString(ConfigData.TOKENSECRET, null);
-		NetUtil.doubanService = new DoubanService("DoubanYP",
-				NetUtil.apiKey, NetUtil.secret);
+		if(NetUtil.doubanService == null)
+			NetUtil.doubanService = new DoubanService("DoubanYP",
+					NetUtil.apiKey, NetUtil.secret);
 		if (accessToken != null && tokenSecret != null) {
 			NetUtil.doubanService.setAccessToken(accessToken, tokenSecret);
 			NetUtil.isAuthed = true;
@@ -64,7 +65,6 @@ public class BaseActivity extends Activity {
 		super.onRestart();
 		if (sharedata == null)
 			sharedata = getSharedPreferences(ConfigData.TAG, 0);
-//		initDouban();
 	}
 
 	@Override

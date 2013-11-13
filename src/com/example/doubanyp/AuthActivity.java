@@ -73,7 +73,6 @@ public class AuthActivity extends BaseActivity {
 
 	@SuppressLint("SetJavaScriptEnabled")
 	void initWeb() {
-		loading.setVisibility(View.VISIBLE);
 		browser = (WebView) AuthActivity.this.findViewById(R.id.browser);
 		browser.requestFocus();
 		WebSettings settings = browser.getSettings();
@@ -108,21 +107,19 @@ public class AuthActivity extends BaseActivity {
 	}
 
 	void loadUrl() {
-		new AsyncTask<String, Void, Void>() {
-			private String url;
+		new AsyncTask<Void, Void, String>() {
 
 			@Override
-			protected Void doInBackground(String... params) {
+			protected String doInBackground(Void... params) {
 				// TODO Auto-generated method stub
-				url = getAuthUrl();
-				browser.loadUrl(url);
-				return null;
+				return getAuthUrl();
 			}
 
 			@Override
-			protected void onPostExecute(Void result) {
+			protected void onPostExecute(String result) {
 				super.onPostExecute(result);
-				loading.setVisibility(View.GONE);
+				isFirstLoad = true;
+				browser.loadUrl(result);
 				browser.setVisibility(View.VISIBLE);
 			}
 
@@ -133,7 +130,7 @@ public class AuthActivity extends BaseActivity {
 				showDialog();
 			}
 
-		}.execute("");
+		}.execute();
 	}
 
 	void doAuth(final Uri uri) {

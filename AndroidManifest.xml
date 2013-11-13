@@ -18,8 +18,7 @@
         android:theme="@android:style/Theme.NoTitleBar" >
         <activity
             android:name="com.example.doubanyp.DoubanActivity"
-            android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan" >
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

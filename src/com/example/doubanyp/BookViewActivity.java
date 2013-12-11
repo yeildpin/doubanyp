@@ -54,11 +54,11 @@ public class BookViewActivity extends BaseActivity {
 		TextView txtInfo = (TextView) findViewById(R.id.txtInfo);
 
 		TextView titleText = (TextView) findViewById(R.id.myTitle);
-		titleText.setText("ã€Š" + book.getTitle() + "ã€‹");
+		titleText.setText("¡¶" + book.getTitle() + "¡·");
 
 		if (book != null) {
 			fillData(book.getUrl());
-			titleText.setText("ã€Š" + book.getTitle() + "ã€‹");
+			titleText.setText("¡¶" + book.getTitle() + "¡·");
 			txtInfo.setText(R.string.bookInfo);
 		}
 
@@ -80,7 +80,7 @@ public class BookViewActivity extends BaseActivity {
 					}
 				});
 
-		// å›žé€€æŒ‰é’®
+		// »ØÍË°´Å¥
 		ImageButton backButton = (ImageButton) findViewById(R.id.back_button);
 
 		backButton.setOnClickListener(new OnClickListener() {
@@ -91,7 +91,7 @@ public class BookViewActivity extends BaseActivity {
 
 		});
 
-		// æŸ¥çœ‹è¯„è®ºæŒ‰é’®
+		// ²é¿´ÆÀÂÛ°´Å¥
 		showReview1 = (Button) findViewById(R.id.btnShowComment1);
 		showReview2 = (Button) findViewById(R.id.btnShowComment2);
 		OnClickListener showReviewClicklistener = new OnClickListener() {
@@ -151,11 +151,11 @@ public class BookViewActivity extends BaseActivity {
 					String summary = "\t\t" + book.getSummary();
 
 					if (!"".equals(book.getAuthorIntro())) {
-						summary = summary + "\n\nä½œè€…ç®€ä»‹:" + book.getAuthorIntro();
+						summary = summary + "\n\n×÷Õß¼ò½é:" + book.getAuthorIntro();
 					}
 
 					if (!"".equals(book.getTagsToString())) {
-						summary = summary + "\n\næ ‡ç­¾:" + book.getTagsToString();
+						summary = summary + "\n\n±êÇ©:" + book.getTagsToString();
 					}
 
 					txtSummary.setText(summary);

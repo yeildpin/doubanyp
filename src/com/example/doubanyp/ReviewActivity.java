@@ -33,16 +33,16 @@ import com.google.gdata.data.douban.ReviewFeed;
 import com.google.gdata.util.ServiceException;
 
 public class ReviewActivity extends BaseListActivity {
-	private static final String ORDERBY_TIME = "time";// æŒ‰è¯„åˆ†æ’åº
-	private static final String ORDERBY_SCORE = "score";// æŒ‰è¯„åˆ†æ’åº
-	private String orderby;// æ’åº
+	private static final String ORDERBY_TIME = "time";// °´ÆÀ·ÖÅÅĞò
+	private static final String ORDERBY_SCORE = "score";// °´ÆÀ·ÖÅÅĞò
+	private String orderby;// ÅÅĞò
 	private boolean isOrderbyTime;
 	private List<Review> reviews = new ArrayList<Review>();
 	private ReviewListAdapter listAdapter;
 	private int index = 1;
-	private int count = 6; // æ¯æ¬¡è·å–æ•°ç›®
-	private int total; // æœ€å¤§æ¡ç›®æ•°
-	private boolean isFilling = false; // åˆ¤æ–­æ˜¯å¦æ­£åœ¨è·å–æ•°æ®
+	private int count = 6; // Ã¿´Î»ñÈ¡ÊıÄ¿
+	private int total; // ×î´óÌõÄ¿Êı
+	private boolean isFilling = false; // ÅĞ¶ÏÊÇ·ñÕıÔÚ»ñÈ¡Êı¾İ
 	private Book book;
 
 	@Override
@@ -102,7 +102,7 @@ public class ReviewActivity extends BaseListActivity {
 		Bundle extras = getIntent().getExtras();
 		TextView titleView = (TextView) findViewById(R.id.myTitle);
 		book = extras != null ? (Book) extras.getSerializable("book") : null;
-		String title = "ã€Š" + book.getTitle() + "ã€‹çš„è¯„è®º";
+		String title = "¡¶" + book.getTitle() + "¡·µÄÆÀÂÛ";
 		titleView.setText(title);
 		fillDataBySubject(book);
 		getListView().setOnScrollListener(new OnScrollListener() {
@@ -113,7 +113,7 @@ public class ReviewActivity extends BaseListActivity {
 
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 				if (scrollState == OnScrollListener.SCROLL_STATE_IDLE) {
-					// åˆ¤æ–­æ»šåŠ¨åˆ°åº•éƒ¨
+					// ÅĞ¶Ï¹ö¶¯µ½µ×²¿
 					if (view.getLastVisiblePosition() == (view.getCount() - 1)) {
 						loadRemnantListItem(book);
 					}
@@ -123,7 +123,7 @@ public class ReviewActivity extends BaseListActivity {
 		});
 	}
 
-	// åŠ è½½æ›´å¤šè¯„è®º
+	// ¼ÓÔØ¸ü¶àÆÀÂÛ
 	private void loadRemnantListItem(Book book) {
 		if (isFilling) {
 			return;
@@ -142,7 +142,7 @@ public class ReviewActivity extends BaseListActivity {
 
 	AsyncTask<Book, Void, ReviewFeed> task;
 
-	// è·å–è¯„è®ºæ•°æ®
+	// »ñÈ¡ÆÀÂÛÊı¾İ
 	private void fillDataBySubject(final Book book) {
 		if(task != null)
 			task.cancel(true);
@@ -180,12 +180,12 @@ public class ReviewActivity extends BaseListActivity {
 					}
 
 					if (reviews.size() == 0) {
-						Toast.makeText(ReviewActivity.this, "æ²¡æœ‰æ‰¾åˆ°ç›¸å…³è¯„è®ºï¼",
+						Toast.makeText(ReviewActivity.this, "Ã»ÓĞÕÒµ½Ïà¹ØÆÀÂÛ£¡",
 								Toast.LENGTH_SHORT).show();
 					}
 
 				} else {
-					Toast.makeText(ReviewActivity.this, "æ•°æ®åŠ è½½å¤±è´¥ï¼",
+					Toast.makeText(ReviewActivity.this, "Êı¾İ¼ÓÔØÊ§°Ü£¡",
 							Toast.LENGTH_SHORT).show();
 				}
 				isFilling = false;
@@ -202,7 +202,7 @@ public class ReviewActivity extends BaseListActivity {
 
 	}
 
-	// é€‰ä¸­äº‹ä»¶
+	// Ñ¡ÖĞÊÂ¼ş
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		Intent i = new Intent(this, ReviewViewActivity.class);
@@ -258,7 +258,7 @@ public class ReviewActivity extends BaseListActivity {
 			summary = summary.replaceAll(" ", "");
 			txtSummary.setText(summary);
 			ratingBar.setRating(review.getRating());
-			txtAuthorName.setText("è¯„è®ºäºº:" + review.getAuthorName());
+			txtAuthorName.setText("ÆÀÂÛÈË:" + review.getAuthorName());
 			return view;
 		}
 	}

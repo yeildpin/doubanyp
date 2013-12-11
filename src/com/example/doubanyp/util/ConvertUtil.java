@@ -35,7 +35,7 @@ public class ConvertUtil {
 	}
 
 	/**
-	 * è·å–ç”¨æˆ·çš„è¯„è®ºåˆ—è¡¨
+	 * »ñÈ¡ÓÃ»§µÄÆÀÂÛÁĞ±í
 	 */
 	public static List<Review> ConvertReviews(ReviewFeed feed, Book book,
 			UserEntry ue) {
@@ -49,7 +49,7 @@ public class ConvertUtil {
 	}
 
 	/**
-	 * è·å–å›¾ä¹¦åˆ—è¡¨
+	 * »ñÈ¡Í¼ÊéÁĞ±í
 	 * 
 	 * @param subjectFeed
 	 * @return
@@ -70,7 +70,7 @@ public class ConvertUtil {
 	}
 
 	/**
-	 * è½¬æ¢å›¾ä¹¦æ¡ç›®
+	 * ×ª»»Í¼ÊéÌõÄ¿
 	 * 
 	 * @param entry
 	 * @return
@@ -99,7 +99,7 @@ public class ConvertUtil {
 	}
 
 	/**
-	 * è·å–è¯„è®ºåˆ—è¡¨
+	 * »ñÈ¡ÆÀÂÛÁĞ±í
 	 */
 	public static List<Review> ConvertReviews(ReviewFeed feed, Book book) {
 		List<Review> reviews = new ArrayList<Review>();
@@ -133,7 +133,7 @@ public class ConvertUtil {
 				review.setAuthorId(author.getUri());
 			}
 
-			// å¦‚æœä¸å­˜åœ¨subjectï¼Œåˆ™è·å–
+			// Èç¹û²»´æÔÚsubject£¬Ôò»ñÈ¡
 			if (book == null) {
 				book = new Book();
 				com.google.gdata.data.douban.Subject googleSubject = entry
@@ -148,7 +148,7 @@ public class ConvertUtil {
 		return reviews;
 	}
 
-	// ç»„è£…å›¾ä¹¦æè¿°ä¿¡æ¯
+	// ×é×°Í¼ÊéÃèÊöĞÅÏ¢
 	private static String getDescription(Subject subject) {
 		String description = "";
 		List<Attribute> attributes = subject.getAttributes();
@@ -171,9 +171,9 @@ public class ConvertUtil {
 		for (String name : names) {
 			if (map.get(name) != null) {
 				if ("price".equals(name)) {
-					description += "\n" + map.get(name) + "å…ƒ";
+					description += "\n" + map.get(name) + "Ôª";
 				} else if ("pages".equals(name)) {
-					description += "\n" + map.get(name) + "é¡µ";
+					description += "\n" + map.get(name) + "Ò³";
 				} else {
 					description += "\n" + map.get(name);
 				}
@@ -187,7 +187,7 @@ public class ConvertUtil {
 	}
 
 	/**
-	 * è·å–å›¾ä¹¦æè¿°ä¿¡æ¯
+	 * »ñÈ¡Í¼ÊéÃèÊöĞÅÏ¢
 	 * 
 	 * @param entry
 	 * @return
@@ -214,9 +214,9 @@ public class ConvertUtil {
 		for (String name : names) {
 			if (map.get(name) != null) {
 				if ("price".equals(name)) {
-					description += "\n" + map.get(name) + "å…ƒ";
+					description += "\n" + map.get(name) + "Ôª";
 				} else if ("pages".equals(name)) {
-					description += "\n" + map.get(name) + "é¡µ";
+					description += "\n" + map.get(name) + "Ò³";
 				} else {
 					description += "\n" + map.get(name);
 				}

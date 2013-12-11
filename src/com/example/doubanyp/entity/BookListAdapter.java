@@ -62,7 +62,7 @@ public class BookListAdapter extends BaseAdapter {
 		txtDescription.setText(book.getDescription());
 
 		RatingBar ratingBar = (RatingBar) view.findViewById(R.id.ratingbar);
-		// 娌″彇鍒拌瘎鍒嗕俊鎭紝鍒欎笉鏄剧ずRatingBar
+		// 没取到评分信息，则不显示RatingBar
 		if (Math.abs(book.getRating() + 1) < 0.1) {
 			ratingBar.setVisibility(View.GONE);
 		} else {

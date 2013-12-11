@@ -40,7 +40,7 @@ public class AuthActivity extends BaseActivity {
 		setContentView(R.layout.activity_auth);
 
 		TextView myTitle = (TextView) this.findViewById(R.id.myTitle);
-		myTitle.setText("ç™»å½•æˆæƒ");
+		myTitle.setText("µÇÂ¼ÊÚÈ¨");
 		((ImageButton) this.findViewById(R.id.back_button))
 				.setOnClickListener(new OnClickListener() {
 
@@ -148,7 +148,7 @@ public class AuthActivity extends BaseActivity {
 				loading.setVisibility(View.GONE);
 				if (result != null) {
 					Toast toast = null;
-					toast = Toast.makeText(AuthActivity.this, "ç™»å½•æˆåŠŸ",
+					toast = Toast.makeText(AuthActivity.this, "µÇÂ¼³É¹¦",
 							Toast.LENGTH_LONG);
 					toast.setGravity(Gravity.CENTER, 0, 0);
 					toast.show();
@@ -177,7 +177,7 @@ public class AuthActivity extends BaseActivity {
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		params.addRule(RelativeLayout.CENTER_IN_PARENT);
 		Button btn = new Button(getApplicationContext());
-		btn.setText("ç™»å½•å¤±è´¥,è¯·é‡è¯•");
+		btn.setText("µÇÂ¼Ê§°Ü,ÇëÖØÊÔ");
 		btn.setLayoutParams(params);
 		btn.setOnClickListener(new OnClickListener() {
 

@@ -37,9 +37,9 @@ public class BaseListActivity extends ListActivity {
 	
 	protected void doAuth(){
 		new AlertDialog.Builder(BaseListActivity.this)
-		.setTitle("æç¤º")
-		.setMessage("ç”¨æˆ·æœªç™»å½•æˆ–æˆæƒå·²è¿‡æœŸï¼Œè¯·å…ˆç™»å½•ï¼")
-		.setPositiveButton("ç™»å½•", new DialogInterface.OnClickListener() {
+		.setTitle("ÌáÊ¾")
+		.setMessage("ÓÃ»§Î´µÇÂ¼»òÊÚÈ¨ÒÑ¹ıÆÚ£¬ÇëÏÈµÇÂ¼£¡")
+		.setPositiveButton("µÇÂ¼", new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialoginterface, int i) {
 				Intent intent = new Intent(BaseListActivity.this, AuthActivity.class);
 				startActivityForResult(intent, 0);

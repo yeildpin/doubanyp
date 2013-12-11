@@ -48,9 +48,9 @@ public class BaseActivity extends Activity {
 	}
 
 	protected void doAuth() {
-		new AlertDialog.Builder(BaseActivity.this).setTitle("æç¤º")
-				.setMessage("ç”¨æˆ·æœªç™»å½•æˆ–æˆæƒå·²è¿‡æœŸï¼Œè¯·å…ˆç™»å½•ï¼")
-				.setPositiveButton("ç™»å½•", new DialogInterface.OnClickListener() {
+		new AlertDialog.Builder(BaseActivity.this).setTitle("ÌáÊ¾")
+				.setMessage("ÓÃ»§Î´µÇÂ¼»òÊÚÈ¨ÒÑ¹ıÆÚ£¬ÇëÏÈµÇÂ¼£¡")
+				.setPositiveButton("µÇÂ¼", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialoginterface, int i) {
 						Intent intent = new Intent(BaseActivity.this,
 								AuthActivity.class);
@@ -73,17 +73,17 @@ public class BaseActivity extends Activity {
 		closeDialog();
 	}
 
-	// é€€å‡º
+	// ÍË³ö
 	protected void doExit() {
 		new AlertDialog.Builder(BaseActivity.this)
-				.setTitle("æç¤º")
-				.setMessage("ç¡®å®šè¦é€€å‡ºæˆ‘çš„è±†ç“£å—ï¼Ÿ")
-				.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
+				.setTitle("ÌáÊ¾")
+				.setMessage("È·¶¨ÒªÍË³öÎÒµÄ¶¹°êÂğ£¿")
+				.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialoginterface, int i) {
 						finish();
 					}
 				})
-				.setNeutralButton("å–æ¶ˆ", new DialogInterface.OnClickListener() {
+				.setNeutralButton("È¡Ïû", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface arg0, int arg1) {
 					}
 
@@ -91,12 +91,12 @@ public class BaseActivity extends Activity {
 
 	}
 
-	// åŠ è½½å¯¹è¯æ¡†
+	// ¼ÓÔØ¶Ô»°¿ò
 	public void showDialog() {
 		if (pd == null)
 			pd = new ProgressDialog(BaseActivity.this);
-		pd.setTitle("ä¿¡æ¯");
-		pd.setMessage("åŠ è½½æ•°æ®ä¸­...");
+		pd.setTitle("ĞÅÏ¢");
+		pd.setMessage("¼ÓÔØÊı¾İÖĞ...");
 		pd.show();
 	}
 

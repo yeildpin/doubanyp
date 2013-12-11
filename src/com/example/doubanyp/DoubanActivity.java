@@ -34,11 +34,11 @@ public class DoubanActivity extends BaseActivity {
 	private List<Book> books = new ArrayList<Book>();
 	private EditText searchText;
 	private int bookIndex = 1;
-	private int count = 6; // æ¯æ¬¡è·å–æ•°ç›®
-	private boolean isFilling = false; // åˆ¤æ–­æ˜¯å¦æ­£åœ¨è·å–æ•°æ®
+	private int count = 6; // Ã¿´Î»ñÈ¡ÊıÄ¿
+	private boolean isFilling = false; // ÅĞ¶ÏÊÇ·ñÕıÔÚ»ñÈ¡Êı¾İ
 	protected BookListAdapter bookListAdapter;
 
-	private int bookTotal; // æœ€å¤§æ¡ç›®æ•°
+	private int bookTotal; // ×î´óÌõÄ¿Êı
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +60,7 @@ public class DoubanActivity extends BaseActivity {
 				if (checkNetWorkStatus())
 					doSearch();
 				else {
-					Toast toast = Toast.makeText(getApplicationContext(), "ç¨‹åºæœªè”ç½‘ï¼",
+					Toast toast = Toast.makeText(getApplicationContext(), "³ÌĞòÎ´ÁªÍø£¡",
 							Toast.LENGTH_SHORT);
 					toast.setGravity(Gravity.CENTER, 0, 0);
 					toast.show();
@@ -88,7 +88,7 @@ public class DoubanActivity extends BaseActivity {
 
 			public void onScrollStateChanged(AbsListView view, int scrollState) {
 				if (scrollState == OnScrollListener.SCROLL_STATE_IDLE) {
-					// åˆ¤æ–­æ»šåŠ¨åˆ°åº•éƒ¨
+					// ÅĞ¶Ï¹ö¶¯µ½µ×²¿
 					if (view.getLastVisiblePosition() == (view.getCount() - 1)) {
 						loadRemnantListItem();
 					}
@@ -98,7 +98,7 @@ public class DoubanActivity extends BaseActivity {
 
 	}
 
-	// è·å–æ›´å¤šæ¡ç›®
+	// »ñÈ¡¸ü¶àÌõÄ¿
 	private void loadRemnantListItem() {
 		if (isFilling) {
 			return;

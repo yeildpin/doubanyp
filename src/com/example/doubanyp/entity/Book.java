@@ -11,16 +11,16 @@ public class Book implements Serializable {
 	private String authorIntro;
 	private boolean collection;
 	private String collectionUrl;
-	private String description; // 鎻忚堪锛氫綔鑰呯瓑
-	private String imgUrl; // 鍥剧墖鍦板潃
+	private String description; // 描述：作者等
+	private String imgUrl; // 图片地址
 	private float myRating;
 	private String myShortComment;
 	private String myTags = "";
 	private float rating;
-	private String summary; // 鎽樿
+	private String summary; // 摘要
 	private List<Tag> tags;
 	private String title;
-	private String url; // url鍦板潃
+	private String url; // url地址
 
 	public String getCollectionUrl() {
 		return collectionUrl;

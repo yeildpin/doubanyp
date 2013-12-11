@@ -44,7 +44,7 @@ public class ReviewEditActivity extends BaseActivity {
 		book = extras != null ? (Book) extras.getSerializable("book") : null;
 		review = extras != null ? (Review) extras.getSerializable("review")
 				: null;
-		String title = "è¯„è®ºã€Š" + this.book.getTitle() + "ã€‹";
+		String title = "ÆÀÂÛ¡¶" + this.book.getTitle() + "¡·";
 		((TextView) findViewById(R.id.myTitle)).setText(title);
 		initView();
 		setData();
@@ -54,7 +54,7 @@ public class ReviewEditActivity extends BaseActivity {
 
 	private void initView() {
 		Button btnSave = (Button) findViewById(R.id.btnSave);
-		// ä¿å­˜
+		// ±£´æ
 		btnSave.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
@@ -62,7 +62,7 @@ public class ReviewEditActivity extends BaseActivity {
 			}
 
 		});
-		// å–æ¶ˆ
+		// È¡Ïû
 		Button btnCancel = (Button) findViewById(R.id.btnCancel);
 		btnCancel.setOnClickListener(new OnClickListener() {
 
@@ -71,7 +71,7 @@ public class ReviewEditActivity extends BaseActivity {
 			}
 
 		});
-		// è¿”å›
+		// ·µ»Ø
 		ImageButton backButton = (ImageButton) findViewById(R.id.back_button);
 		backButton.setOnClickListener(new OnClickListener() {
 
@@ -96,19 +96,19 @@ public class ReviewEditActivity extends BaseActivity {
 		String content = this.reviewContent.getText().toString().trim();
 		int rating = (int) this.reviewRatingbar.getRating();
 		if ("".equals(title)) {
-			Toast.makeText(this, "è¯„è®ºæ ‡é¢˜ä¸èƒ½ä¸ºç©ºï¼", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "ÆÀÂÛ±êÌâ²»ÄÜÎª¿Õ£¡", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		if (rating == 0) {
-			Toast.makeText(this, "è¯„åˆ†ä¸èƒ½ä¸ºç©ºï¼", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "ÆÀ·Ö²»ÄÜÎª¿Õ£¡", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		if ("".equals(content)) {
-			Toast.makeText(this, "è¯„è®ºå†…å®¹ä¸èƒ½ä¸ºç©ºï¼", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "ÆÀÂÛÄÚÈİ²»ÄÜÎª¿Õ£¡", Toast.LENGTH_SHORT).show();
 			return;
 		}
 		if (content.length() < 50) {
-			Toast.makeText(this, "è¯„è®ºå†…å®¹ä¸èƒ½å°äº50ä¸ªå­—ç¬¦ï¼", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "ÆÀÂÛÄÚÈİ²»ÄÜĞ¡ÓÚ50¸ö×Ö·û£¡", Toast.LENGTH_SHORT).show();
 			return;
 		}
 
@@ -127,9 +127,9 @@ public class ReviewEditActivity extends BaseActivity {
 					closeDialog();
 					String message = "";
 					if (review == null) {
-						message = "è¯„è®ºæ–°å¢æˆåŠŸï¼";
+						message = "ÆÀÂÛĞÂÔö³É¹¦£¡";
 					} else {
-						message = "è¯„è®ºä¿®æ”¹æˆåŠŸï¼";
+						message = "ÆÀÂÛĞŞ¸Ä³É¹¦£¡";
 					}
 					Toast.makeText(ReviewEditActivity.this, message,
 							Toast.LENGTH_SHORT).show();
@@ -137,9 +137,9 @@ public class ReviewEditActivity extends BaseActivity {
 				} else {
 					String message = "";
 					if (review == null) {
-						message = "è¯„è®ºæ–°å¢å¤±è´¥ï¼";
+						message = "ÆÀÂÛĞÂÔöÊ§°Ü£¡";
 					} else {
-						message = "è¯„è®ºä¿®æ”¹å¤±è´¥ï¼";
+						message = "ÆÀÂÛĞŞ¸ÄÊ§°Ü£¡";
 					}
 					Toast.makeText(ReviewEditActivity.this, message,
 							Toast.LENGTH_SHORT).show();
@@ -160,7 +160,7 @@ public class ReviewEditActivity extends BaseActivity {
 				Rating rating = new Rating();
 				rating.setValue(ratingValue);
 				try {
-					// æ›´æ–°
+					// ¸üĞÂ
 					if (review != null) {
 						ReviewEntry reviewEntry = new ReviewEntry();
 						reviewEntry.setId(review.getId());
@@ -169,7 +169,7 @@ public class ReviewEditActivity extends BaseActivity {
 								new PlainTextConstruct(content), rating);
 						return true;
 					}
-					// æ–°å¢
+					// ĞÂÔö
 					else {
 						SubjectEntry subjectEntry = new SubjectEntry();
 						subjectEntry.setId(book.getId());
@@ -211,14 +211,14 @@ public class ReviewEditActivity extends BaseActivity {
 			}
 		}
 		new AlertDialog.Builder(ReviewEditActivity.this)
-				.setTitle("æç¤º")
-				.setMessage("æ•°æ®æœªä¿å­˜ï¼Œç¡®å®šè¦é€€å‡ºå—ï¼Ÿ")
-				.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
+				.setTitle("ÌáÊ¾")
+				.setMessage("Êı¾İÎ´±£´æ£¬È·¶¨ÒªÍË³öÂğ£¿")
+				.setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialoginterface, int i) {
 						finish();
 					}
 				})
-				.setNeutralButton("å–æ¶ˆ", new DialogInterface.OnClickListener() {
+				.setNeutralButton("È¡Ïû", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface arg0, int arg1) {
 					}
 

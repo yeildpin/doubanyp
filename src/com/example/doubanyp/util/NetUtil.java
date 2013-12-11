@@ -32,13 +32,13 @@ public class NetUtil {
 	public static final String secret = "4b08025f5bc7f1a2";
 	public static final String callback = "app://mycallback";
 
-	// å›¾ç‰‡åŠ è½½ç®¡ç†å™¨
+	// Í¼Æ¬¼ÓÔØ¹ÜÀíÆ÷
 	public static AsyncImageLoader asyncImageLoader = new AsyncImageLoader();
 	public static DoubanService doubanService;
 	public static boolean isAuthed;
 
 	/**
-	 * è·å–è±†ç“£æœ€å—æ¬¢è¿è¯„è®º
+	 * »ñÈ¡¶¹°ê×îÊÜ»¶Ó­ÆÀÂÛ
 	 * 
 	 * @param start
 	 * @return
@@ -46,7 +46,7 @@ public class NetUtil {
 	public static List<Review> getBestReviews(int start) {
 		int max = 50;
 		List<Review> reviews = new ArrayList<Review>();
-		// æœ€å¤š50ä¸ª
+		// ×î¶à50¸ö
 		if (start >= max) {
 			return reviews;
 		}
@@ -91,13 +91,13 @@ public class NetUtil {
 
 				Review review = new Review();
 
-				// å¤„ç†ä½œè€…URL
+				// ´¦Àí×÷ÕßURL
 				authorUrl = authorUrl.replaceFirst("book", "api");
 				authorUrl = authorUrl.substring(0, authorUrl.length() - 1);
 				review.setAuthorId(authorUrl);
 				review.setAuthorName(authorName);
 
-				// å¤„ç†è¯„è®ºURL
+				// ´¦ÀíÆÀÂÛURL
 				reviewUrl = reviewUrl.replaceFirst("book", "api");
 				reviewUrl = reviewUrl.substring(0, reviewUrl.length() - 1);
 				review.setUrl(reviewUrl);
@@ -105,7 +105,7 @@ public class NetUtil {
 				review.setTitle(reviewTitle);
 				review.setSummary(summary);
 				review.setRating(rating);
-				review.setSelf(false);// å…¨éƒ¨ä½œä¸ºåˆ«äººçš„è¯„è®ºï¼Œä¸å¯ç¼–è¾‘
+				review.setSelf(false);// È«²¿×÷Îª±ğÈËµÄÆÀÂÛ£¬²»¿É±à¼­
 
 				Book book = new Book();
 				subjectUrl = subjectUrl.replaceFirst("book", "api");
@@ -124,7 +124,7 @@ public class NetUtil {
 
 	}
 
-	// è·å–è¯„è®ºå…¨æ–‡
+	// »ñÈ¡ÆÀÂÛÈ«ÎÄ
 	public static Review getReviewContentAndComments(Review review)
 			throws IOException {
 		HttpGet request = new HttpGet(reviewUrl + review.getId() + "/");
@@ -159,7 +159,7 @@ public class NetUtil {
 		return review;
 	}
 
-	// è·å–ç½‘ç»œä¸Šçš„å›¾ç‰‡
+	// »ñÈ¡ÍøÂçÉÏµÄÍ¼Æ¬
 	public static Bitmap getNetImage(String url) throws IOException {
 		try {
 			URL imageUri = new URL(url);
@@ -175,7 +175,7 @@ public class NetUtil {
 			return bitmap;
 		} catch (IOException e) {
 			e.printStackTrace();
-			throw new IOException("è·å–éªŒè¯ç å›¾ç‰‡å¤±è´¥ï¼");
+			throw new IOException("»ñÈ¡ÑéÖ¤ÂëÍ¼Æ¬Ê§°Ü£¡");
 		}
 	}
 

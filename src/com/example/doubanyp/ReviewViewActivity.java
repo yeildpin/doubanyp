@@ -42,7 +42,7 @@ public class ReviewViewActivity extends BaseActivity {
 		ratingBar = (RatingBar) findViewById(R.id.ratingbar);
 		ratingBar.setVisibility(View.INVISIBLE);
 
-		// å›é€€æŒ‰é’®
+		// »ØÍË°´Å¥
 		ImageButton backButton = (ImageButton) findViewById(R.id.back_button);
 		backButton.setOnClickListener(new OnClickListener() {
 
@@ -57,12 +57,12 @@ public class ReviewViewActivity extends BaseActivity {
 				.getSerializable("review") : null;
 		if (review != null) {
 			TextView titleView = (TextView) findViewById(R.id.myTitle);
-			titleView.setText("ã€Š" + review.getSubject().getTitle() + "ã€‹çš„è¯„è®º");
+			titleView.setText("¡¶" + review.getSubject().getTitle() + "¡·µÄÆÀÂÛ");
 			fillData(review);
 		}
 	}
 
-	// è·å–è¯¦ç»†è¯„è®º
+	// »ñÈ¡ÏêÏ¸ÆÀÂÛ
 	private void fillData(Review review) {
 		new AsyncTask<Review, Void, Review>() {
 
@@ -89,9 +89,9 @@ public class ReviewViewActivity extends BaseActivity {
 				if (review.getAuthorImage() != null) {
 					userImageView.setImageBitmap(review.getAuthorImage());
 				}
-				txtUserInfo.setText(" è¯„è®ºäººï¼š" + review.getAuthorName());
-				txtSubjectTitle.setText("ã€Š" + review.getSubject().getTitle()
-						+ "ã€‹çš„è¯„è®º");
+				txtUserInfo.setText(" ÆÀÂÛÈË£º" + review.getAuthorName());
+				txtSubjectTitle.setText("¡¶" + review.getSubject().getTitle()
+						+ "¡·µÄÆÀÂÛ");
 				ratingBar.setRating(review.getRating());
 				ratingBar.setVisibility(View.VISIBLE);
 			}
